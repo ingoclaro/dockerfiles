@@ -3,7 +3,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vbguest.auto_update = false
+  config.vbguest.auto_update = false if defined? config.vbguest
 
   config.vm.box = "boot2docker"
   config.vm.box_url = "https://github.com/ingoclaro/boot2docker-vagrant-box/releases/download/0.4.0/boot2docker.box"
