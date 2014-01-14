@@ -50,9 +50,3 @@ Last stable version: 0.7.5, please update docker
 ```
 
 you are ready to roll!!
-## Dockerfiles
-
-- ruby-install
-ruby-install script, so you can compile ruby
-build with: `build with: docker build -t ruby-install ruby-install/`
-
