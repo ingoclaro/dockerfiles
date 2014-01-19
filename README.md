@@ -2,13 +2,21 @@
 
 ## Dockerfiles
 
-- ruby-install  
+### ruby-install  
 ruby-install script, so you can compile ruby
 build: `docker build -t ruby-install ruby-install/`  
 run:  
-`docker run -i ruby-install`  
-`docker run -i ruby-install ruby 2.0.0-p353 -- --disable-install-doc`  
-binaries will be in /opt/rubies inside the docker container, but that is a mounted volume, so you can use it in other containers.
+`docker run -i ingoclaro/ruby-install`  
+`docker run -i ingoclaro/ruby-install ruby 2.0.0-p353 -- --disable-install-doc`  
+binaries will be in /opt/rubies inside the docker container, that is a mounted volume, so you can use it in other containers like this:
+
+```
+docker run -v /opt/rubies -name=rubies busybox true
+docker run -volumes-from rubies -i ingoclaro/ruby-install ruby 2.0.0-p353 -- --disable-install-doc
+docker run -volumes-from rubies image cmd
+```
+
+Once [this pull request](https://github.com/dotcloud/docker/issues/1992) is merged in, you will be able to copy the binaries from inside a volumne, like: `docker cp {container_id}:/opt/rubies/2.0.0-p353 .`
 
 ## initial set up
 
