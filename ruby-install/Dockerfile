@@ -12,9 +12,10 @@ RUN yum -y update
 # install dependencies
 RUN yum -y install tar bzip2 automake gcc gdbm-devel libffi-devel ncurses-devel openssl-devel readline-devel zlib-devel
 
+VOLUME ["/opt/rubies"]
+
 # install ruby-install
 RUN cd /usr/local/src && curl -L https://github.com/postmodern/ruby-install/archive/v0.3.4.tar.gz | tar xz
 RUN cd /usr/local/src/ruby-install-0.3.4 && make install
 
 ENTRYPOINT ["/usr/local/bin/ruby-install"]
-VOLUME ["/opt/rubies"]
